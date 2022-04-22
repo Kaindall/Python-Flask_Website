@@ -10,7 +10,7 @@ def contact():
     return render_template('contact')
 
 @app.route('/users')
-def users
+def users():
     return render_template('users')
 
 if __name__ == '__main__':
