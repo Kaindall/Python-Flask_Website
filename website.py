@@ -1,10 +1,10 @@
 from flask import Flask, render_template, url_for
+from forms import FormCreateAcc, FormLogin
 
 app=Flask(__name__)
+app.config['SECRET_KEY'] = 'I15NxqBiJ7R9nnUWhM3Nd5dCu3TUM8su'
 
 user_list = ['Jax', 'Fiora', 'Gnar', 'Khazix', 'Viktor']
-
-app.config['SECRET_KEY'] = 'I15NxqBiJ7R9nnUWhM3Nd5dCu3TUM8su'
 
 
 
@@ -23,7 +23,13 @@ def users():
 
 @app.route('/login')
 def login():
-    return render_template('login.html')
+    f_login = FormLogin()
+    f_createacc = FormCreateAcc()
+    print (f_login.validate())
+    return render_template('login.html', f_login=FormLogin, f_createacc=FormCreateAcc)
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
