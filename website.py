@@ -25,8 +25,7 @@ def users():
 def login():
     f_login = FormLogin()
     f_createacc = FormCreateAcc()
-    print (f_login.validate())
-    return render_template('login.html', f_login=FormLogin, f_createacc=FormCreateAcc)
+    return render_template('login.html', f_login=f_login, f_createacc=f_createacc)
 
 
 
