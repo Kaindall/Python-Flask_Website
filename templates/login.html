@@ -4,26 +4,51 @@
 
 <div class="container">
     <div class="row">
+        <h1>Sign In or Create Accont</h1>
+        <hr>
         <div class='col' id="login_camp">
-            <h1><strong> Login </strong></h1>
-            {{ f_login.email.label }}
-            {{ f_login.email }}
-            {{ f_login.password.label }}
-            {{ f_login.password }}
-            {{ f_login.submit_login }}
-            
+            <form method='POST' action="">
+                <fieldset>
+                    <legend>Login</legend>
+                    <div>
+                        {{ f_login.email.label }}
+                        {{ f_login.email }}
+                    </div>
+                    <div>
+                        {{ f_login.password.label }}
+                        {{ f_login.password }}
+                    </div>
+                    <div>
+                        {{ f_login.remember_login.label }}
+                        {{ f_login.remember_login }}
+                    </div>
+                </fieldset>
+                {{ f_login.submit_login }}  
+            </form>
         </div>
         <div class='col' id="signup_camp">
-            <h1><strong>Create Account</strong></h1>
-            {{ f_createacc.username.label }}
-            {{ f_createacc.username }}
-            {{ f_createacc.email.label }}
-            {{ f_createacc.email }}
-            {{ f_createacc.password.label }}
-            {{ f_createacc.password }}
-            {{ f_createacc.pw_confirmation.label }}
-            {{ f_createacc.pw_confirmation }}
-            {{ f_createacc.submit_createaccount }}
+            <form method='POST' action="">
+                <fieldset>
+                    <legend>Create Account</legend>
+                    <div>
+                        {{ f_createacc.username.label }}
+                        {{ f_createacc.username }}
+                    </div>
+                    <div>
+                        {{ f_createacc.email.label }}
+                        {{ f_createacc.email }}
+                    </div>
+                    <div>
+                        {{ f_createacc.password.label }}
+                        {{ f_createacc.password }}
+                    </div>
+                    <div>
+                        {{ f_createacc.pw_confirmation.label }}
+                        {{ f_createacc.pw_confirmation }}
+                    </div>
+                {{ f_createacc.submit_createaccount }}
+                </fieldset>
+            </form>
         </div>
     </div>
 </div>
