@@ -7,46 +7,103 @@
         <h1>Sign In or Create Accont</h1>
         <hr>
         <div class='col' id="login_camp">
-            <form method='POST' action="">
+            <form method='POST' action="" class="border p-4 mt-2">
+                {{ f_login.csrf_token }}
                 <fieldset>
                     <legend>Login</legend>
-                    <div>
-                        {{ f_login.email.label }}
-                        {{ f_login.email }}
+                    <div class='form-group'>
+                        {{ f_login.email.label(class='form-control-label') }}
+
+                        {% if f_login.email.errors %}
+                            {{ f_login.email(class='form-control is-invalid') }}
+                        <div class="invalid-feedback">
+                            {% for error in f_login.email.errors %}
+                                    {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                            {{ f_login.email(class='form-control') }}
+                        {% endif %}
                     </div>
-                    <div>
-                        {{ f_login.password.label }}
-                        {{ f_login.password }}
+                    <div class='form-group'>
+                        {{ f_login.password.label(class='form-control-label') }}
+                        {% if f_login.password.errors %}
+                            {{ f_login.password(class='form-control is-invalid') }}
+                        <div class="invalid-feedback">
+                            {% for error in f_login.password.errors %}
+                                    {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                            {{ f_login.password(class='form-control') }}
+                        {% endif %}
                     </div>
-                    <div>
-                        {{ f_login.remember_login.label }}
-                        {{ f_login.remember_login }}
+                    <div class='form-group'>
+                        {{ f_login.remember_login.label(class='form-check-label') }}
+                        {{ f_login.remember_login(class='form-check-input') }}
                     </div>
                 </fieldset>
-                {{ f_login.submit_login }}  
+                {{ f_login.btnsubmit_login(class='btn btn-primary mt-2') }}  
             </form>
         </div>
         <div class='col' id="signup_camp">
-            <form method='POST' action="">
+            <form method='POST' action="" class="border p-4 mt-2">
+                {{ f_createacc.csrf_token }}
                 <fieldset>
                     <legend>Create Account</legend>
-                    <div>
-                        {{ f_createacc.username.label }}
-                        {{ f_createacc.username }}
+                    <div class='form-group'>
+                        {{ f_createacc.username.label(class='form-control-label') }}
+                        {% if f_createacc.username.errors %}
+                            {{ f_createacc.username(class='form-control is-invalid') }}
+                        <div class="invalid-feedback">
+                            {% for error in f_createacc.username.errors %}
+                                    {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                            {{ f_createacc.username(class='form-control') }}
+                        {% endif %}
                     </div>
-                    <div>
-                        {{ f_createacc.email.label }}
-                        {{ f_createacc.email }}
+                    <div class='form-group'>
+                        {{ f_createacc.email.label(class='form-control-label') }}
+                        {% if f_createacc.email.errors %}
+                            {{ f_createacc.email(class='form-control is-invalid') }}
+                        <div class="invalid-feedback">
+                            {% for error in f_createacc.email.errors %}
+                                    {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                            {{ f_createacc.email(class='form-control') }}
+                        {% endif %}
                     </div>
-                    <div>
-                        {{ f_createacc.password.label }}
-                        {{ f_createacc.password }}
+                    <div class='form-group'>
+                        {{ f_createacc.password.label(class='form-control-label') }}
+                        {% if f_createacc.password.errors %}
+                            {{ f_createacc.password(class='form-control is-invalid') }}
+                        <div class="invalid-feedback">
+                            {% for error in f_createacc.password.errors %}
+                                    {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                            {{ f_createacc.password(class='form-control') }}
+                        {% endif %}
                     </div>
-                    <div>
-                        {{ f_createacc.pw_confirmation.label }}
-                        {{ f_createacc.pw_confirmation }}
+                    <div class='form-group'>
+                        {{ f_createacc.pw_confirmation.label(class='form-control-label') }}
+                        {% if f_createacc.pw_confirmation.errors %}
+                            {{ f_createacc.pw_confirmation(class='form-control is-invalid') }}
+                        <div class="invalid-feedback">
+                            {% for error in f_createacc.pw_confirmation.errors %}
+                                    {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                            {{ f_createacc.pw_confirmation(class='form-control') }}
+                        {% endif %}
                     </div>
-                {{ f_createacc.submit_createaccount }}
+                {{ f_createacc.btnsubmit_createaccount(class='btn btn-primary mt-2') }}
                 </fieldset>
             </form>
         </div>
