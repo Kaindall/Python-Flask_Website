@@ -1,11 +1,12 @@
 from flask import Flask, render_template, url_for, request, flash, redirect
 from forms import FormCreateAcc, FormLogin
-from flask_sqlachemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 app=Flask(__name__)
 
 app.config['SECRET_KEY'] = 'I15NxqBiJ7R9nnUWhM3Nd5dCu3TUM8su'
-app.config['SQLACHEMY_DATABASE_URI'] = 'sqlite:///community.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///community.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 database = SQLAlchemy(app)
 

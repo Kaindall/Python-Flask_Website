@@ -8,13 +8,13 @@ class User(database.Model):
     password = database.Column(database.String, nullable=False)
     profile_img = database.Column(database.String, default='default.jpg')
     posts = database.relationship('Post', backref='owner', lazy=True)
-    knowledge = database.Columns(database.String, nullable=False, default='Unknown')
+    knowledge = database.Column(database.String, nullable=False, default='Unknown')
     
 class Post(database.Model):
     id = database.Column(database.Integer, primary_key=True)
     title = database.Column(database.String, nullable=False)
     content = database.Column(database.Text, nullable=False)
-    creation_data = database.Column(database.DateTime, nullable=False, defaut=datetime.utcnow)
+    creation_data = database.Column(database.DateTime, nullable=False, default=datetime.utcnow)
     id_user = database.Column(database.Integer, database.ForeignKey('user.id'), nullable=False)
     
 if __name__ == '__main__':
