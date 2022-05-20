@@ -1,5 +1,5 @@
 from datetime import datetime
-from website import database
+from First_Site import database
 
 class User(database.Model):
     id = database.Column(database.Integer, primary_key=True)
