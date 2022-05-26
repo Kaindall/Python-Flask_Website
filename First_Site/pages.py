@@ -2,7 +2,7 @@ from First_Site import app, database, bcrypt
 from flask import render_template, url_for, request, flash, redirect
 from First_Site.forms import FormLogin, FormCreateAcc
 from First_Site.models import User
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user
 
 user_list = ['Diana', 'Zeus', 'Jubileu']
 
@@ -44,7 +44,7 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
-    flash(f'Logou successfuly! I hope see you later.', 'alert-success')
+    flash(f'Logout successfuly! I hope see you later.', 'alert-success')
     return redirect(url_for('home'))
 
 app.route('/profile')
