@@ -1,8 +1,8 @@
 from First_Site import app, database, bcrypt
 from flask import render_template, url_for, request, flash, redirect
-from First_Site.forms import FormLogin, FormCreateAcc
+from First_Site.forms import FormLogin, FormCreateAcc, FormEditProfile
 from First_Site.models import User
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 
 user_list = ['Diana', 'Zeus', 'Jubileu']
 
@@ -15,6 +15,7 @@ def contact():
     return render_template('contact.html')
 
 @app.route('/users')
+@login_required
 def users():
     return render_template('users.html', user_list=user_list)
 
@@ -28,7 +29,11 @@ def login():
         if user and bcrypt.check_password_hash(user.password, f_login.password.data):
             login_user(user, remember=f_login.remember_login.data)
             flash(f'Login successfully! Welcome {f_login.email.data}', 'alert-success')
-            return redirect(url_for('home'))
+            par_next = request.args.get('next')
+            if par_next:
+                return redirect(par_next)
+            else:
+                return redirect(url_for('home'))
         else:
             flash(f'Login failed. Email or password wrong.', 'alert-danger')
         
@@ -42,16 +47,26 @@ def login():
     return render_template('login.html', f_login=f_login, f_createacc=f_createacc)
 
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()
     flash(f'Logout successfuly! I hope see you later.', 'alert-success')
     return redirect(url_for('home'))
 
-app.route('/profile')
+@app.route('/profile')
+@login_required
 def profile():
-    render_template('profile.html')
+    profile_img = url_for('static', filename=f'img_database/{current_user.profile_img}')
+    return render_template('profile.html', profile_img=profile_img)
 
-app.route('/post/create')
+@app.route('/profile/edit')
+@login_required
+def profile_edit():
+    f_editprofile = FormEditProfile()
+    profile_img = url_for('static', filename=f'img_database/{current_user.profile_img}')
+    return render_template('profile_edit.html', profile_img=profile_img, f_editprofile = f_editprofile)
+
+@app.route('/post/create', methods=['GET', 'POST'])
+@login_required
 def create_post():
-    render_template('createpost.html')
-
+    return render_template('createpost.html')

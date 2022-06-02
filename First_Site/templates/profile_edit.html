@@ -1,0 +1,47 @@
+{% extends 'profile.html' %}
+
+{% block f_profile_edit %}
+<div class="container">
+    <hr>
+    <div class="row">
+        <div class='col' id="login_camp">
+            <form method='POST' action="" class="border p-4 mt-2">
+                {{ f_editprofile.csrf_token }}
+                <fieldset>
+                    <legend>Profile Edit</legend>
+                    <div class='form-group'>
+                        {{ f_editprofile.username.label(class='form-control-label') }}
+                        {% if f_editprofile.username.errors %}
+                            {{ f_editprofile.username(class='form-control is-invalid') }}
+                        <div class="invalid-feedback">
+                            {% for error in f_editprofile.username.errors %}
+                                    {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                            {{ f_editprofile.username(class='form-control') }}
+                        {% endif %}
+                    </div>
+                    <div class='form-group'>
+                        {{ f_editprofile.email.label(class='form-control-label') }}
+                        {% if f_editprofile.email.errors %}
+                            {{ f_editprofile.email(class='form-control is-invalid') }}
+                        <div class="invalid-feedback">
+                            {% for error in f_editprofile.email.errors %}
+                                    {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                            {{ f_editprofile.email(class='form-control') }}
+                        {% endif %}
+                    </div>
+                </fieldset>
+                {{ f_editprofile.btnsubmit_editprofile(class='btn btn-primary mt-2') }}  
+            </form>
+        </div>
+    </div>
+</div>
+
+    <h1>Primeiro texto de exibição</h1>
+
+{% endblock %}
