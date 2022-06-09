@@ -11,8 +11,13 @@
                 <span>{{ current_user.email }}</span>
                 <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
                     <div class="d-flex flex-column">
-                        <span class="articles">Contents</span>
-                        <span class="number1">0</span>             
+                        {% if 'Unknown' in current_user.knowledge %}
+                            <span class="articles">Knowledge</span>
+                            <span class="number1">0</span> 
+                        {% else %}
+                            <span class="articles">Knowledge</span>
+                            <span class="number1">{{ current_user.knowledge.count(';')+1 }}</span> 
+                        {% endif %}            
                     </div>
                     <div class="d-flex flex-column">
                         <span class="rating">Posts</span>
@@ -26,6 +31,15 @@
             </div>       
         </div>    
     </div>
+<div class='row justify-content-center'>
+    <div class="col col-4" style='text-align: center'>
+        <strong>Knowledges:</strong><br>
+        {% for knowledge in current_user.knowledge.split(';') %}
+            <button type='button' class="btn btn-success mt-2" disabled>{{ knowledge }}</button>
+        {% endfor %}
+    </div>
+</div>    
+
 {% block f_profile_edit %}
 {% endblock %}
 {% endblock %}

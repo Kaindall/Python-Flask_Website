@@ -5,7 +5,7 @@
     <hr>
     <div class="row">
         <div class='col' id="login_camp">
-            <form method='POST' action="" class="border p-4 mt-2">
+            <form method='POST' action="" class="border p-4 mt-2", enctype="multipart/form-data">
                 {{ f_editprofile.csrf_token }}
                 <fieldset>
                     <legend>Profile Edit</legend>
@@ -35,13 +35,30 @@
                             {{ f_editprofile.email(class='form-control') }}
                         {% endif %}
                     </div>
+                    <div class="form-group">
+                        {{ f_editprofile.profile_img.label }}
+                        {{ f_editprofile.profile_img(class='form-control-file') }}
+                        {% if f_editprofile.profile_img.errors %}
+                            {% for error in f_editprofile.profile_img.errors %}
+                                <span class='text-danger'>{{ error }}</span><br>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <hr>
+                    <p>Contents</p>
+                    {% for field in f_editprofile %}
+                        {% if 'knowledge' in field.name %}
+                            <div class='form-group'>
+                                {{ field(class='form-check-input') }}
+                                {{ field.label(class='form-check-label') }}
+                            </div>
+                        {% endif %}
+                    {% endfor %} 
                 </fieldset>
                 {{ f_editprofile.btnsubmit_editprofile(class='btn btn-primary mt-2') }}  
             </form>
         </div>
     </div>
 </div>
-
-    <h1>Primeiro texto de exibição</h1>
 
 {% endblock %}
